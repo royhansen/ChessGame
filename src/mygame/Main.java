@@ -13,6 +13,7 @@ public class Main extends SimpleApplication {
     @Override
     public void simpleInitApp() {
         flyCam.setMoveSpeed(25f);
+        flyCam.setDragToRotate(true);
         GameAppState state = new GameAppState();
         stateManager.attach(state);
     }

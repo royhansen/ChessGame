@@ -36,10 +36,11 @@ public class GameAppState extends AbstractAppState {
         this.pieceNode = new Node("Pieces");
         pieces = new ArrayList<Piece>();
         
+        
+        //set cam above board in the middle and pitch down 90. 
         cam.setLocation(new Vector3f(3.5f, 10, 3.5f));
-        cam.lookAt(new Vector3f(3.5f, 0f, 3.5f), Vector3f.UNIT_Y);
-                
-        System.out.println(cam.getRotation());
+        Quaternion pitch090 = new Quaternion().fromAngleAxis(FastMath.PI/2, new Vector3f(1,0,0));
+        cam.setRotation(cam.getRotation().mult(pitch090));
         
         drawBoard();
         drawPiece();
@@ -94,6 +95,7 @@ public class GameAppState extends AbstractAppState {
         Material mat = new Material(app.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
         mat.setColor("Color", ColorRGBA.Blue);
         geom.setMaterial(mat);
+        geom.setLocalTranslation(0, .25f, 0);
         Piece piece = new Piece();
         pieces.add(piece);
         geom.setUserData("piece", piece);
